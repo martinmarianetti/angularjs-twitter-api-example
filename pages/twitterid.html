@@ -1,0 +1,46 @@
+<section class="jumbotron">
+    <div class="container">
+        <h2>Twitter ID and username converter</h2>
+        <p>With this application you can get a twitter user information by typing any Twitter ID or @Screen_name</p>         
+        <div class="col-sm-offset-2 col-sm-6"> 
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <input class="form-control"  type="text" placeholder="user_id or screen_name" ng-model="id" ng-keypress="($event.which === 13)?getResult(id):0" required>
+                </div>                
+                <a class="btn btn-primary"  role="button" ng-click="getResult(id)">Search </a>
+            </form>
+        </div>          
+    </div>
+</section>
+<section>
+    <div class="alert alert-danger" role="alert" ng-show="error">{{ message }}</div>    
+    <table class="table table-striped table-hover " ng-show="usuarios.length">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Profile Image</th>
+                <th>User_id</th>
+                <th>Full name</th>
+                <th>Screen_name</th>
+                <th>Description</th>
+                <th>Followers</th>
+                <th>Statuses</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in usuarios">
+                <td>{{user.position}}</td>
+                <td><img src="{{ user.profile_image_url }}"></td>
+                <td>{{ user.id_str }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.screen_name }}</td>
+                <td>{{ user.description }}</td>
+                <td>{{ user.followers_count }}</td>
+                <td>{{ user.statuses_count }}</td>
+
+                <td> <button type="button" ng-click="removeUser($index)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></td>
+            </tr>   
+        </tbody>
+    </table> 
+</section>
